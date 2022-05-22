@@ -1,0 +1,14 @@
+{% extends 'my_movies/base.html'%}
+{% load bootstrap5 %}
+
+
+{% block content %}
+<h1><a href="{% url 'my_movies:movie' movie.id %}">{{ movie }}</a></h1>
+
+<form action="{% url 'my_movies:review' movie.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Save changes</button>
+</form>
+
+{% endblock content %}

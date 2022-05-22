@@ -1,0 +1,19 @@
+{% extends 'my_movies/base.html' %}
+
+{% block content %}
+
+<blockquote class="blockquote mb-0">
+    <p>{{ comment|linebreaks }}</p>
+    <footer class="blockquote-footer">{{ comment.owner }}</footer>
+</blockquote>
+
+<form action="{% url 'my_movies:reply' comment.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="parentId" value="{{comment.id}}">
+
+    <button name='submit'>Add reply</button>
+</form>
+
+
+{% endblock content %}
