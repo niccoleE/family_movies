@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
@@ -35,7 +35,7 @@ def user_movies(request, owner):
 @login_required
 def movie(request, movie_id):
     """Show a single movie and all its comments"""
-    movie = Movie.objects.get(id=movie_id)
+    movie = get_object_or_404(Movie, id=movie_id)
     comments = Comment.objects.filter(movie=movie, parent=None).order_by('-date_added')
     replies = Comment.objects.filter(movie=movie).exclude(parent=None).order_by('-date_added')
 
