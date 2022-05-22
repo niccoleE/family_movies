@@ -1,1 +1,1 @@
-web: gunicorn movies.wsgi --movie-file -
+web: gunicorn movies.wsgi --log-file -
