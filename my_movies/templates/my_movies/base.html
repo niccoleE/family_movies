@@ -20,20 +20,20 @@
 
     <a class="navbar-brand" href="{% url 'my_movies:home' %}">My Family Cinema</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-       data-target="#navbarCollapse" aria-controls="#navbarCollapse"
-       aria-expanded="false" aria-label="Toggle navigation">
-
-        <span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" >
+        <span class="navbar-toggler-icon"></span>
+    </a>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
+
+    <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="btn btn-outline-success" type="submit" href="{% url 'my_movies:add' %}">
                     Add post
                 </a>
             </li>
-        </ul>
+    </ul>
+
         <ul class="navbar-nav ms-auto">
           {% if not user.is_authenticated %}
             <li class="nav-item">
