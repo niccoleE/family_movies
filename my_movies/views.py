@@ -25,14 +25,12 @@ def my_movies(request):
     return render(request, 'my_movies/all_movies.html', context)
 
 
-@login_required
 def user_movies(request, owner):
     movies = Movie.objects.filter(owner__username=owner).order_by('-date_added')
     context = {'movies': movies, 'owner': owner}
     return render(request, 'my_movies/all_movies.html', context)
 
 
-@login_required
 def movie(request, movie_id):
     """Show a single movie and all its comments"""
     movie = get_object_or_404(Movie, id=movie_id)
