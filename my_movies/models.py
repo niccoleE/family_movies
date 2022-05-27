@@ -36,6 +36,6 @@ class Comment(models.Model):
 
     def __str__(self):
         """model as a string"""
-        return f"{self.text[:50]}..."
+        return f"{self.text}"
 
 

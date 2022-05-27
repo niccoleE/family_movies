@@ -14,15 +14,15 @@
   {% for comment in comments %}
     <div class="row">
 
-      <div class="col-md-1">
-        <img class="rounded mx-auto d-block w-100 border border-dark p-2" src="https://styles.redditmedia.com/t5_2qqcn/styles/communityIcon_de3pi2i14o551.png" alt="user">
+      <div class="col-2">
+        <img class="rounded mx-auto d-block w-75 border border-dark p-2" src="https://styles.redditmedia.com/t5_2qqcn/styles/communityIcon_de3pi2i14o551.png" alt="user profile img">
       </div>
 
-      <div class="col-md-11">
+      <div class="col-10">
         <b> {{comment.owner}} </b> {{ comment.date_added|date:'M d, Y H:i'}}
         <p>{{comment}}</p>
 
-        <div class="reply mx-0">
+        <div>
 
           <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#renderForm">
             Reply
@@ -35,8 +35,8 @@
           {% for reply in replyDict|get_val:comment.id %}
 
           <div class="collapse" id="repls">
-            <div class="card">
-              <div class="card-body">
+            <div class="row">
+              <div class="col">
                 <b>{{ reply.owner }}</b> {{ reply.date_added|date:'M d, Y H:i'}}
                 <p>{{ reply }}</p>
               </div>
