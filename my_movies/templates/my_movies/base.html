@@ -47,7 +47,10 @@
                 {{ user.username }}
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'my_movies:my_movies' %}">My Movies</a>
+                <a class="nav-link" href="{% url 'my_movies:my_movies' %}">My Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'my_movies:wish_list' %}">WatchList</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users:logout'%}">Log out</a>

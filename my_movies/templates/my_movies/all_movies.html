@@ -1,11 +1,14 @@
 {% extends "my_movies/base.html" %}
 
 {% block page_header %}
-
+{% if request.user.id != owner.id %}
+<h3>Movies added by {{ owner }}</h3>
+{% endif %}
 {% endblock page_header %}
 
-
 {% block content %}
+
+
 
 <ul>
   {% for movie in movies %}
@@ -28,7 +31,7 @@
           <p><b>Review:</b> {{ movie.review }}</p>
         </div>
         <div style="padding-bottom:20px">
-          {{ movie.description }}
+          <b>Description: </b>{{ movie.description }}
         </div>
         <div class="button">
           <a class="btn btn-primary" href="{% url 'my_movies:new_comment' movie.id %}">Add comment</a>
@@ -42,6 +45,8 @@
   </div>
 
   <hr>
+  {% empty %}
+  <p>There are no posts yet</p>
   {% endfor %}
 </ul>
 

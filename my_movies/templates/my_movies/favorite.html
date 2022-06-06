@@ -1,0 +1,18 @@
+{% extends "my_movies/base.html" %}
+
+{% block content %}
+
+<form action="{% url 'my_movies:favorite' %}" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <button name="submit">Add</button>
+</form>
+
+
+
+
+
+
+{% endblock content %}

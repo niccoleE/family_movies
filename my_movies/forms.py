@@ -1,18 +1,17 @@
 from django import forms
-from .models import Movie, Comment
+from .models import Movie, Comment, Note
 
 
 class MovieForm(forms.ModelForm):
+    rating = forms.FloatField(max_value=10, min_value=0,
+    widget=forms.NumberInput(attrs={'step': "0.5"}))
+
     class Meta:
         model = Movie
-        fields = ['year', 'description', 'rating',
-                  'review', 'img_url']
-
-
-class SelectForm(forms.ModelForm):
-    class Meta:
-        model = Movie
-        fields = ['title']
+        fields = ['title', 'rating', 'review', 'year', 'description', 'homepage', 'img_url']
+        widgets = {'review': forms.Textarea(attrs={'cols': 60}),
+                   'description': forms.Textarea(attrs={'cols': 60}),
+                   }
 
 
 class AddForm(forms.ModelForm):
@@ -22,9 +21,13 @@ class AddForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    rating = forms.FloatField(required=True, max_value=10, min_value=0,
+                              widget=forms.NumberInput(attrs={'step': "0.5"}))
+
     class Meta:
         model = Movie
         fields = ['rating', 'review']
+        widgets = {'review': forms.Textarea(attrs={'cols': 80, 'required': True})}
 
 
 class CommentForm(forms.ModelForm):
@@ -34,3 +37,8 @@ class CommentForm(forms.ModelForm):
         labels = {'text': ''}
         widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'rating']

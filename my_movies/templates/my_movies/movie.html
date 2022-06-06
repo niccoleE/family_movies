@@ -18,21 +18,30 @@
 
     <div class="col-sm-12 col-md-6">
       <div>
+          {% if movie.year %}
           <h3>{{ movie }} ({{ movie.year }}) </h3>
-              <p>added by {{ movie.owner }} <i>({{ movie.date_added|date:'M d, Y H:i'}})</i></p>
-
+          {% else %}
+          <h3>{{ movie }}</h3>
+          {% endif %}
+          <p>added by <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a> <i>({{ movie.date_added|date:'M d, Y H:i'}})</i></p>
       </div>
+
       <div>
-          <p> Rating: &#11088 {{ movie.rating }} </p>
+          <p><b> Rating: </b>&#11088 {{ movie.rating }} </p>
       </div>
       <div>
           <p>
-              {{ movie.review }}
+              <b>Review: </b>{{ movie.review }}
           </p>
       </div>
         <div style="padding-bottom:20px">
-            {{ movie.description }}
+            <b>Description: </b>{{ movie.description }}
         </div>
+        {% if movie.homepage %}
+        <div style="padding-bottom:20px">
+          <b>homepage: </b><a href="{{ movie.homepage }}">{{ movie.homepage }}</a>
+        </div>
+        {% endif %}
         <div class="button">
             <a class="btn btn-primary" href="{% url 'my_movies:new_comment' movie.id %}">Add comment</a>
             {% if request.user == movie.owner %}

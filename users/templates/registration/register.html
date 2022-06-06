@@ -1,7 +1,35 @@
 {% extends 'my_movies/base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
+<h3>Please fill in the required information</h3>
+
+
+<form method="post" action="{% url 'users:register' %}">
+  {% csrf_token %}
+
+  <p><label>{{ form.username.label }}</label>
+      {{ form.username }}
+      <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+  </p>
+
+  <p><label>{{ form.password1.label }}</label>
+      {{ form.password1 }}
+      <span class="helptext">at least 8 characters; can’t be entirely numeric</span>
+  </p>
+  <p><label>{{ form.password2.label }}</label>
+      {{ form.password2 }}</p>
+  <input type="submit" value="Submit">
+{% for text in form.errors.values %}
+  <div style="color:red;">
+  <p>{{ text }}<div>
+  </div>
+{% endfor %}
+</form>
+
+
+{% comment %}
 <form method="post" action="{% url 'users:register' %}">
     {% csrf_token %}
     {{ form.as_p }}
@@ -9,5 +37,6 @@
     <button name="submit">Register</button>
     <input type="hidden" name="next" value="{% url 'my_movies:home' %}"/>
 </form>
+{% endcomment %}
 
 {% endblock content %}

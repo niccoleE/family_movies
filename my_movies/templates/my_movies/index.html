@@ -19,9 +19,13 @@
         <div>
           <a class="link-dark" href="{% url 'my_movies:movie' movie.id %}"><h3>{{ movie }}</h3></a><h4>&#11088 {{ movie.rating }}</h4>
         </div>
-        <p><p class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}"><a> by <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a></a></p>
+
+        <p>added by</i> <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a></p>
         <p>{{ movie.review }}</p>
         <a href="{% url 'my_movies:see_comments' movie.id %}">See comments</a>
+        <div style="padding:15px">
+          <a href="{% url 'my_movies:add_to_watchlist' movie.id %}" class="btn btn-outline-success">Add to WatchList</a>
+        </div>
       </div>
 
     </div>

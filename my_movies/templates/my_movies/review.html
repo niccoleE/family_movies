@@ -3,11 +3,13 @@
 
 
 {% block content %}
-<h1><a href="{% url 'my_movies:movie' movie.id %}">{{ movie }}</a></h1>
+<h1>{{ movie }}</h1>
 
-<form action="{% url 'my_movies:review' movie.id %}" method='post'>
+<form action="" method='post'>
     {% csrf_token %}
-    {{ form.as_p }}
+    <table>
+    {{ form.as_table }}
+    </table>
     <button name="submit">Save changes</button>
 </form>
 

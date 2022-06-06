@@ -1,0 +1,17 @@
+{% extends 'my_movies/base.html' %}
+
+{% block page_header %}
+<h1>Our users recommend</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+{% for user in users %}
+<p>
+<h3><a class="link-success text-decoration-none" href="{% url 'my_movies:user_movies' user %}"><b><i>{{ user }}</i></b> recommends</a></h3>
+</p>
+
+{% endfor %}
+
+
+{% endblock %}
