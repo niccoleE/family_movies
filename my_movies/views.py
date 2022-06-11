@@ -14,7 +14,9 @@ TMDB_IMG = "https://image.tmdb.org/t/p/w500"
 
 
 def home(request):
-    return render(request, 'my_movies/home.html')
+    movies = Movie.objects.order_by('-date_added')[:1]
+    context = {'movies': movies}
+    return render(request, 'my_movies/home.html', context)
 
 
 def all(request):

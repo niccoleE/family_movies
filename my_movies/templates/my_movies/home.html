@@ -7,14 +7,20 @@
 {% endblock page_header %}
 
 {% block content %}
-<div class=container" style="padding:15px 15px">
-<a class="link-dark" href="{% url 'my_movies:last_added' %}"><p class="h3">Last added</p></a>
-</div>
+<div class="container" style="padding:0px 20px">
+
 <div class=container" style="padding:15px 15px">
 <a class="link-dark" href="{% url 'my_movies:top10' %}"><h3>Top 10</h3></a>
 </div>
 <div class=container" style="padding:15px 15px">
-<a class="link-dark" href="{% url 'my_movies:by_user' %}"><h3>Sorted by user</h3></a>
+<a class="link-dark" href="{% url 'my_movies:by_user' %}"><h3>by User</h3></a>
+</div>
+<div class=container" style="padding:15px 15px">
+<a class="link-dark" href="{% url 'my_movies:last_added' %}"><p class="h3">Last added</p></a>
 </div>
 
-{% endblock %}
+</div>
+
+<hr>
+
+{% endblock content %}
