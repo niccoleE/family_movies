@@ -7,10 +7,11 @@
 {% block content %}
 
 {% for user in users %}
+{% if not user.is_superuser %}
 <p>
 <h3><a class="link-success text-decoration-none" href="{% url 'my_movies:user_movies' user %}">Movies from <b><i>{{ user }}</i></b></a></h3>
 </p>
-
+{% endif %}
 {% endfor %}
 
 
