@@ -4,13 +4,13 @@ from .models import Movie, Comment, Note
 
 class MovieForm(forms.ModelForm):
     rating = forms.FloatField(max_value=10, min_value=0,
-    widget=forms.NumberInput(attrs={'step': "0.5"}))
+                              widget=forms.NumberInput(attrs={'step': "0.5"}))
 
     class Meta:
         model = Movie
         fields = ['title', 'rating', 'review', 'year', 'description', 'homepage', 'img_url']
-        widgets = {'review': forms.Textarea(attrs={'cols': 60}),
-                   'description': forms.Textarea(attrs={'cols': 60}),
+        widgets = {'review': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'cols': 60}),
+                   'description': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'cols': 60}),
                    }
 
 
@@ -27,7 +27,11 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = ['rating', 'review']
-        widgets = {'review': forms.Textarea(attrs={'cols': 80, 'required': True})}
+        widgets = {'review': forms.Textarea(
+            attrs={'class': 'form-control form-control-lg',
+                   'cols': 60,
+                   'required': True})
+        }
 
 
 class CommentForm(forms.ModelForm):
