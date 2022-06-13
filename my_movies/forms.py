@@ -39,7 +39,9 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['text']
         labels = {'text': ''}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        widgets = {'text': forms.Textarea(
+            attrs={'class': 'form-control form-control-lg', 'cols': 80})
+        }
 
 
 class NoteForm(forms.ModelForm):

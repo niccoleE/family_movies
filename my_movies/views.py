@@ -32,8 +32,9 @@ def last_added(request):
 
 
 def top10(request):
+    heading = "TOP 10 by Rating"
     movies = Movie.objects.order_by('-rating')[:10]
-    context = {'movies': movies}
+    context = {'movies': movies, 'heading': heading}
     return render(request, 'my_movies/index.html', context)
 
 
@@ -226,7 +227,7 @@ def see_comments(request, movie_id):
             replyDict[reply.parent.id].append(reply)
 
     context = {'movie': movie, 'comments': comments, 'replies': replies, 'replyDict': replyDict}
-    return render(request, 'my_movies/test.html', context)
+    return render(request, 'my_movies/comments.html', context)
 
 
 @login_required

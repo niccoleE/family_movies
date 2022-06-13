@@ -1,5 +1,15 @@
 {% extends "my_movies/base.html" %}
 
+{% block page_header %}
+
+{% if heading %}
+<div>
+<h3>{{ heading }}</h3>
+{% endif %}
+</div>
+
+{% endblock %}
+
 {% block content %}
 
 {% for movie in movies %}
@@ -21,9 +31,9 @@
         </div>
 
         <p>added by</i> <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a></p>
-        <p>{{ movie.review }}</p>
+        <p><b>Review:</b> {{ movie.review }}</p>
         <a href="{% url 'my_movies:see_comments' movie.id %}">See comments</a>
-        <div style="padding:15px">
+        <div style="padding:15px 15px 0 0">
           <a href="{% url 'my_movies:add_to_watchlist' movie.id %}" class="btn btn-outline-success">Add to WatchList</a>
         </div>
       </div>

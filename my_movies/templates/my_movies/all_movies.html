@@ -37,7 +37,7 @@
           <a style="margin-right:5px" class="btn btn-primary" href="{% url 'my_movies:new_comment' movie.id %}">Add comment</a>
           {% if request.user == movie.owner %}
           <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:edit' movie.id %}">Edit</a>
-          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:delete' movie.id %}"">Delete</a>
+          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:delete' movie.id %}">Delete</a>
           {% endif %}
         </div>
       </div>

@@ -15,7 +15,7 @@
     <ul class="list-group">
         <li class="list-group-item list-group-item-secondary
         d-flex justify-content-between align-items-center">
-          <a class="link-success" href="{% url 'my_movies:movie' movie.id %}">{{ movie }}</a>
+            <a class="link-success" href="{% url 'my_movies:movie' movie.id %}">{{ movie }} (<i>from {{ movie.owner }})</i></a>
           <span class="badge"><a class="btn-outline-danger" href="{% url 'my_movies:delete_from_watchlist' movie.id %}">☓</a></span>
         </li>
     </ul>
