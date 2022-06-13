@@ -18,12 +18,14 @@
       {{ form.password1 }}
       <span class="helptext">at least 8 characters; can’t be entirely numeric</span>
   </p>
-  <p><label>{{ form.password2.label }}</label>
-      {{ form.password2 }}</p>
+  <p>
+      <label>{{ form.password2.label }}</label>
+      {{ form.password2 }}
+  </p>
   <input type="submit" value="Submit">
 {% for text in form.errors.values %}
   <div style="color:red;">
-  <p>{{ text }}<div>
+      <p>{{ text }}</p>
   </div>
 {% endfor %}
 </form>

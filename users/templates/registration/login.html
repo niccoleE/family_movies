@@ -7,13 +7,18 @@
 
 
 {% block content %}
-  <form method="post" action="{% url 'users:login' %}" class="form">
+  <form method="post" action="{% url 'users:login_check' %}" class="form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="submit" class="btn btn-primary">Log in</button>
+    <button name="submit" class="btn btn-success">Log in</button>
 
     <input type="hidden" name="next"
            value="{% url 'my_movies:home' %}" />
+
   </form>
+
+<div style="margin-top:7px">
+<a href="{% url 'users:register' %}">Register</a>
+</div>
 
 {% endblock content %}
