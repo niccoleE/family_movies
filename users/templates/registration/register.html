@@ -8,21 +8,29 @@
 
 <form method="post" action="{% url 'users:register' %}">
   {% csrf_token %}
-
-  <p><label>{{ form.username.label }}</label>
-      {{ form.username }}
-      <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-  </p>
-
-  <p><label>{{ form.password1.label }}</label>
-      {{ form.password1 }}
-      <span class="helptext">at least 8 characters; can’t be entirely numeric</span>
-  </p>
-  <p>
-      <label>{{ form.password2.label }}</label>
-      {{ form.password2 }}
-  </p>
+  <div class="input-group mb-3">
+  <input type="text" name="username" autocapitalize="none" class="form-control"
+         maxlength="150" required="" id="id_username" placeholder="Username">
+  <span style="margin:5px;">Letters, digits and @/./+/-/_ only.</span>
+  </div>
+  <div class="input-group mb-3">
+    <input type="password" id="id_password" name="password1" class="form-control" data-toggle="password1" placeholder="Password">
+    <span class="input-group-text">
+      <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+    </span>
+  <span style="margin:5px;">at least 8 characters; can’t be entirely numeric</span>
+  </div>
+  <div class="input-group mb-3">
+    <input type="password" id="id_password2" name="password2" class="form-control" data-toggle="password2" placeholder="Confirm Password">
+    <span class="input-group-text">
+    <i class="far fa-eye" id="togglePass" style="cursor: pointer;"></i>
+    </span>
+  </div>
+  <div style="margin-top:15px">
   <input type="submit" value="Submit">
+  </div>
+
+
 {% for text in form.errors.values %}
   <div style="color:red;">
       <p>{{ text }}</p>
@@ -30,15 +38,25 @@
 {% endfor %}
 </form>
 
+<script>
+  const togglePasswords = document.querySelectorAll('.fa-eye');
+  const passwords = document.querySelectorAll('input[type=password]');
 
-{% comment %}
-<form method="post" action="{% url 'users:register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
+  togglePasswords.forEach((item, i) => {
+        item.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = passwords[i].getAttribute('type') === 'password' ? 'text' : 'password';
+        passwords[i].setAttribute('type', type);
+        // toggle the eye slash icon
+        item.classList.toggle('fa-eye-slash');
+        })
+    }
+  );
+</script>
 
-    <button name="submit">Register</button>
-    <input type="hidden" name="next" value="{% url 'my_movies:home' %}"/>
-</form>
-{% endcomment %}
+
+
+
+
 
 {% endblock content %}

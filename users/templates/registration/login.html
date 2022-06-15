@@ -9,8 +9,18 @@
 {% block content %}
   <form method="post" action="{% url 'users:login_check' %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit" class="btn btn-success">Log in</button>
+    <p>
+    <input type="text" name="username" autocapitalize="none" class="form-control" maxlength="150"
+           required="" id="id_username" placeholder="Username">
+    </p>
+    <div class="input-group mb-3">
+    <input type="password" id="id_password" name="password" class="form-control"
+           data-toggle="password" placeholder="Password">
+    <span class="input-group-text">
+      <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+    </span>
+    </div>
+      <button name="submit" class="btn btn-success">Log in</button>
 
     <input type="hidden" name="next"
            value="{% url 'my_movies:home' %}" />
@@ -20,5 +30,19 @@
 <div style="margin-top:7px">
 <a href="{% url 'users:register' %}">Register</a>
 </div>
+
+<script>
+  const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+
+</script>
 
 {% endblock content %}
