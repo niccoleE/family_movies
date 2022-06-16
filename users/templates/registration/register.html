@@ -16,14 +16,14 @@
   <div class="input-group mb-3">
     <input type="password" id="id_password" name="password1" class="form-control" data-toggle="password1" placeholder="Password">
     <span class="input-group-text">
-      <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+      <i class="eye" id="togglePassword" style="cursor: pointer;"></i>&#128065
     </span>
   <span style="margin:5px;">at least 8 characters; can’t be entirely numeric</span>
   </div>
   <div class="input-group mb-3">
     <input type="password" id="id_password2" name="password2" class="form-control" data-toggle="password2" placeholder="Confirm Password">
     <span class="input-group-text">
-    <i class="far fa-eye" id="togglePass" style="cursor: pointer;"></i>
+    <i class="eye" id="togglePass" style="cursor: pointer;"></i>&#128065
     </span>
   </div>
   <div style="margin-top:15px">
@@ -39,7 +39,7 @@
 </form>
 
 <script>
-  const togglePasswords = document.querySelectorAll('.fa-eye');
+  const togglePasswords = document.querySelectorAll('.eye');
   const passwords = document.querySelectorAll('input[type=password]');
 
   togglePasswords.forEach((item, i) => {
@@ -48,7 +48,7 @@
         const type = passwords[i].getAttribute('type') === 'password' ? 'text' : 'password';
         passwords[i].setAttribute('type', type);
         // toggle the eye slash icon
-        item.classList.toggle('fa-eye-slash');
+        item.classList.toggle('eye-slash');
         })
     }
   );
