@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'bootstrap5',
     'bootstrap4',
     'django_forms_bootstrap',
-    'fontawesome_5',
 
     # Django apps
     'django.contrib.admin',
@@ -116,12 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-ugettext = lambda s: s
-LANGUAGES = (
-    ('uk', ugettext('Ukrainian')),
-    ('en', ugettext('English')),
-)
 
 TIME_ZONE = 'UTC'
 
