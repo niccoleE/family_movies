@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load static %}
 
+
+
 <!doctype html>
 <html lang="en">
 
@@ -16,9 +18,6 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
   {% bootstrap_messages %}
-
-  <link rel="stylesheet" type="text/css" href="{% static 'my_movies/style.css' %}">
-
 
 
 </head>
@@ -38,7 +37,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="btn btn-outline-success" type="submit" href="{% url 'my_movies:add' %}">
-            Add post
+            Додати фільм
           </a>
         </li>
       </ul>
@@ -67,23 +66,23 @@
         </li>
         {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+          <a class="nav-link" href="{% url 'users:register' %}">Реєстрація</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'users:login_check' %}">Log in</a>
+          <a class="nav-link" href="{% url 'users:login_check' %}">Увійти</a>
         </li>
         {% else %}
         <li class="nav-item navbar-text">
           {{ user.username }}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_movies:my_movies' %}">My Posts</a>
+          <a class="nav-link" href="{% url 'my_movies:my_movies' %}">Мої рекомендації</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_movies:wish_list' %}">WatchList</a>
+          <a class="nav-link" href="{% url 'my_movies:wish_list' %}">Мій Список</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'users:logout'%}">Log out</a>
+          <a class="nav-link" href="{% url 'users:logout'%}">Вийти</a>
         </li>
 
         {% endif %}

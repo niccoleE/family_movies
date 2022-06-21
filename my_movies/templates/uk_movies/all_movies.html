@@ -1,8 +1,8 @@
-{% extends "my_movies/base.html" %}
+{% extends "uk_movies/base.html" %}
 
 {% block page_header %}
 {% if request.user.id != owner.id %}
-<h3>Movies added by {{ owner }}</h3>
+<h3>Фільми від користувача {{ owner }}</h3>
 {% endif %}
 {% endblock page_header %}
 
@@ -29,16 +29,16 @@
           <h4>&#11088 {{ movie.rating }}</h4>
         </div>
         <div>
-          <p><b>Review:</b> {{ movie.review }}</p>
+          <p><b>Оцінка:</b> {{ movie.review }}</p>
         </div>
         <div style="padding-bottom:20px">
-          <b>Description: </b>{{ movie.description }}
+          <b>Опис: </b>{{ movie.description }}
         </div>
         <div class="button">
-          <a style="margin-right:5px" class="btn btn-primary" href="{% url 'my_movies:new_comment' movie.id %}">Add comment</a>
+          <a style="margin-right:5px" class="btn btn-primary" href="{% url 'my_movies:new_comment' movie.id %}">Додати коментар</a>
           {% if request.user == movie.owner %}
-          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:edit' movie.id %}">Edit</a>
-          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:delete' movie.id %}">Delete</a>
+          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:edit' movie.id %}">Редагувати</a>
+          <a style="margin:5px 5px" class="btn btn-primary" href="{% url 'my_movies:delete' movie.id %}">Видалити</a>
           {% endif %}
         </div>
       </div>
@@ -47,7 +47,7 @@
 
   <hr>
   {% empty %}
-  <p>There are no posts yet</p>
+  <p>Поки нічого не додано</p>
   {% endfor %}
 </ul>
 

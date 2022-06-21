@@ -1,4 +1,4 @@
-{% extends "my_movies/base.html" %}
+{% extends "uk_movies/base.html" %}
 
 {% block page_header %}
 
@@ -34,11 +34,11 @@
         <h4>&#11088 {{ movie.rating }}</h4>
       </div>
 
-      <p>added by</i> <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a></p>
+      <p>додано користувачем</i> <a class="link-dark" href="{% url 'my_movies:user_movies' movie.owner %}">{{ movie.owner }}</a></p>
       <p><b>Review:</b> {{ movie.review }}</p>
-      <a href="{% url 'my_movies:see_comments' movie.id %}">See comments</a>
+      <a href="{% url 'my_movies:see_comments' movie.id %}">Коментарі</a>
       <div style="padding:15px 15px 0 0">
-        <a href="{% url 'my_movies:add_to_watchlist' movie.id %}" class="btn btn-outline-success">Add to WatchList</a>
+        <a href="{% url 'my_movies:add_to_watchlist' movie.id %}" class="btn btn-outline-success">Додати в список</a>
       </div>
     </div>
 

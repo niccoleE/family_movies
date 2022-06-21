@@ -16,45 +16,78 @@ TMDB_IMG = "https://image.tmdb.org/t/p/w500"
 def home(request):
     movies = Movie.objects.order_by('-date_added')[:1]
     context = {'movies': movies}
-    return render(request, 'my_movies/home.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/home.html', context)
+    else:
+        return render(request, 'uk_movies/home.html', context)
 
 
 def all(request):
     movies = Movie.objects.order_by('-rating')
     context = {'movies': movies}
-    return render(request, 'my_movies/index.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/index.html', context)
+    else:
+        return render(request, 'uk_movies/index.html', context)
+
 
 
 def last_added(request):
     movies = Movie.objects.order_by('-date_added')[:10]
     context = {'movies': movies}
-    return render(request, 'my_movies/index.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/index.html', context)
+    else:
+        return render(request, 'uk_movies/index.html', context)
+
 
 
 def top10(request):
-    heading = "TOP 10 by Rating"
     movies = Movie.objects.order_by('-rating')[:10]
-    context = {'movies': movies, 'heading': heading}
-    return render(request, 'my_movies/index.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        heading = "TOP 10 by Rating"
+        context = {'movies': movies, 'heading': heading}
+        return render(request, 'my_movies/index.html', context)
+    else:
+        heading = "ТОП-10 за рейтингом"
+        context = {'movies': movies, 'heading': heading}
+        return render(request, 'uk_movies/index.html', context)
+
 
 
 def by_user(request):
     users = User.objects.all()
     context = {'users': users}
-    return render(request, 'my_movies/by_user.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/by_user.html', context)
+    else:
+        return render(request, 'uk_movies/by_user.html', context)
 
 
 @login_required
 def my_movies(request):
     movies = Movie.objects.filter(owner=request.user).order_by('-date_added')
     context = {'movies': movies, 'owner': request.user}
-    return render(request, 'my_movies/all_movies.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/all_movies.html', context)
+    else:
+        return render(request, 'uk_movies/all_movies.html', context)
 
 
 def user_movies(request, owner):
     movies = Movie.objects.filter(owner__username=owner).order_by('-date_added')
     context = {'movies': movies, 'owner': owner}
-    return render(request, 'my_movies/all_movies.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/all_movies.html', context)
+    else:
+        return render(request, 'uk_movies/all_movies.html', context)
 
 
 def movie(request, movie_id):
@@ -65,7 +98,11 @@ def movie(request, movie_id):
 
     context = {'movie': movie, 'comments': comments, 'replies': replies}
 
-    return render(request, 'my_movies/movie.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/movie.html', context)
+    else:
+        return render(request, 'uk_movies/movie.html', context)
 
 
 @login_required()
@@ -83,10 +120,19 @@ def add(request):
                                     params={"api_key": TMDB_Key, "query": title})
             tmdb_movies = response.json()['results']
             context = {'movies': tmdb_movies, 'title': title}
-            return render(request, 'my_movies/select.html', context)
+            language = request.LANGUAGE_CODE
+            if language == "en":
+                return render(request, 'my_movies/select.html', context)
+            else:
+                return render(request, 'uk_movies/select.html', context)
 
     context = {'form': form}
-    return render(request, 'my_movies/add.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/add.html', context)
+    else:
+        return render(request, 'uk_movies/add.html', context)
+
 
 
 @login_required
@@ -131,7 +177,12 @@ def find(request, db_id):
             return redirect('my_movies:my_movies')
 
     context = {'movie': movie, 'form': review_form}
-    return render(request, 'my_movies/review.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/review.html', context)
+    else:
+        return render(request, 'uk_movies/review.html', context)
+
 
 
 @login_required
@@ -148,7 +199,12 @@ def not_tmdb(request):
             new_movie.save()
             return redirect('my_movies:home')
     context = {'form': form, 'title': title}
-    return render(request, 'my_movies/not_tmdb.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/not_tmdb.html', context)
+    else:
+        return render(request, 'uk_movies/not_tmdb.html', context)
+
 
 
 @login_required
@@ -164,11 +220,14 @@ def edit(request, movie_id):
         if form.is_valid():
             form.save()
             return redirect('my_movies:movie', movie_id=movie.id)
-        else:
-            print(form.errors)
 
     context = {'movie': movie, 'form': form}
-    return render(request, 'my_movies/edit.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/edit.html', context)
+    else:
+        return render(request, 'uk_movies/edit.html', context)
+
 
 
 @login_required
@@ -209,7 +268,12 @@ def new_comment(request, movie_id):
 
     # show an empty form
     context = {'movie': movie, 'form': form}
-    return render(request, 'my_movies/new_comment.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/new_comment.html', context)
+    else:
+        return render(request, 'uk_movies/new_comment.html', context)
+
 
 
 @login_required
@@ -227,7 +291,12 @@ def see_comments(request, movie_id):
             replyDict[reply.parent.id].append(reply)
 
     context = {'movie': movie, 'comments': comments, 'replies': replies, 'replyDict': replyDict}
-    return render(request, 'my_movies/comments.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/comments.html', context)
+    else:
+        return render(request, 'uk_movies/comments.html', context)
+
 
 
 @login_required
@@ -235,7 +304,12 @@ def wish_list(request):
     favourite_movies = Movie.objects.filter(fan=request.user).order_by('-date_added')
     my_notes = Note.objects.filter(owner=request.user).order_by('-rating')
     context = {'movies': favourite_movies, 'notes': my_notes}
-    return render(request, 'my_movies/wish_list.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'my_movies/wish_list.html', context)
+    else:
+        return render(request, 'uk_movies/wish_list.html', context)
+
 
 
 @login_required
@@ -274,4 +348,9 @@ def favorite(request):
             note.save()
             return redirect("my_movies:wish_list")
     context = {'form': form}
-    return render(request, "my_movies/favorite.html", context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, "my_movies/favorite.html", context)
+    else:
+        return render(request, "uk_movies/favorite.html", context)
+

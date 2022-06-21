@@ -26,5 +26,4 @@ urlpatterns = [
     path('favorite/', views.favorite, name="favorite"),
     path('favorite/<int:movie_id>', views.delete_from_watchlist, name="delete_from_watchlist"),
     path('note/<int:note_id>', views.delete_note, name="delete_note"),
-
 ]

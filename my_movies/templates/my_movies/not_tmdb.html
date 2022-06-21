@@ -5,9 +5,9 @@
 <p class="h3">Title: {{ title.title }}</p>
 
 <form action="{% url 'my_movies:not_tmdb' %}" method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class='btn btn-primary' name="submit">Add movie</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class='btn btn-primary' name="submit">Add movie</button>
 </form>
 
 {% endblock content %}

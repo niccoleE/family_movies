@@ -4,32 +4,32 @@
 {% block content%}
 
 <div>
-    {% if movies %}
-    <h2>Choose a movie from our list <b>or</b> add a movie manually
-        <a class="btn btn-outline-success" href="{% url 'my_movies:not_tmdb'  %}">Add manually</a>
-    </h2>
-    {% else %}
-    <h2>We didn't find a movie with title <b>{{ title }}</b> but you can add a movie manually
-        <a class="btn btn-outline-success" href="{% url 'my_movies:not_tmdb'  %}">Add manually</a>
-    </h2>
-    {% endif %}
+  {% if movies %}
+  <h2>Choose a movie from our list <b>or</b> add a movie manually
+    <a class="btn btn-outline-success" href="{% url 'my_movies:not_tmdb'  %}">Add manually</a>
+  </h2>
+  {% else %}
+  <h2>We didn't find a movie with title <b>{{ title }}</b> but you can add a movie manually
+    <a class="btn btn-outline-success" href="{% url 'my_movies:not_tmdb'  %}">Add manually</a>
+  </h2>
+  {% endif %}
 
 </div>
 {% for movie in movies %}
 <div class="row" style="padding:10px">
-    <div class="col-4">
+  <div class="col-4">
     <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="image-responsive" width="70%">
+  </div>
+  <div class="col-8">
+    <div>
+      <p>
+        <b>{{ movie.title }}</b>
+      </p>
+      <p>
+        <a class="btn btn-outline-success" href="{% url 'my_movies:find' movie.id %}">Add</a>
+      </p>
     </div>
-    <div class="col-8">
-        <div>
-          <p>
-            <b>{{ movie.title }}</b>
-          </p>
-          <p>
-            <a class="btn btn-outline-success" href="{% url 'my_movies:find' movie.id %}">Add</a>
-          </p>
-        </div>
-    </div>
+  </div>
 </div>
 {% endfor %}
 

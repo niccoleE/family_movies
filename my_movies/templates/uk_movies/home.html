@@ -1,0 +1,38 @@
+{% extends "uk_movies/base.html" %}
+
+{% block page_header %}
+
+<h1>Що подивитись</h1>
+
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="container" style="padding:0px 20px">
+
+  <div class=container" style="padding:15px 15px">
+    <a class="link-dark" href="{% url 'my_movies:top10' %}">
+      <h3>ТОП 10</h3>
+    </a>
+  </div>
+  <div class=container" style="padding:15px 15px">
+    <a class="link-dark" href="{% url 'my_movies:by_user' %}">
+      <h3>вибрати за Автором</h3>
+    </a>
+  </div>
+  <div class=container" style="padding:15px 15px">
+    <a class="link-dark" href="{% url 'my_movies:last_added' %}">
+      <p class="h3">Новинки</p>
+    </a>
+  </div>
+  <div class=container" style="padding:15px 15px">
+    <a class="link-dark" href="{% url 'my_movies:all' %}">
+      <p class="h3">Всі фільми</p>
+    </a>
+  </div>
+
+</div>
+
+<hr>
+
+{% endblock content %}

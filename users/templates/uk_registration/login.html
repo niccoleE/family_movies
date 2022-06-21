@@ -1,8 +1,8 @@
-{% extends 'my_movies/base.html' %}
+{% extends 'uk_movies/base.html' %}
 {% load bootstrap5 %}
 
 {% block page_header %}
-  <h2>Log in to your account</h2>
+  <h2>Щоб увійти, введіть свої дані</h2>
 {% endblock page_header %}
 
 
@@ -11,16 +11,16 @@
     {% csrf_token %}
     <p>
     <input type="text" name="username" autocapitalize="none" class="form-control" maxlength="150"
-           required="" id="id_username" placeholder="Username">
+           required="" id="id_username" placeholder="Ім'я користувача">
     </p>
     <div class="input-group mb-3">
     <input type="password" id="id_password" name="password" class="form-control"
-           data-toggle="password" placeholder="Password">
+           data-toggle="password" placeholder="Пароль">
     <span class="input-group-text">
       <i class="eye" id="togglePassword" style="cursor: pointer;">&#128065</i>
     </span>
     </div>
-      <button name="submit" class="btn btn-success">Log in</button>
+      <button name="submit" class="btn btn-success">Увійти</button>
 
     <input type="hidden" name="next"
            value="{% url 'my_movies:home' %}" />
@@ -28,7 +28,7 @@
   </form>
 
 <div style="margin-top:7px">
-<a class="link-secondary" href="{% url 'users:register' %}">Register</a>
+<a class="link-secondary" href="{% url 'users:register' %}">Реєстрація</a>
 </div>
 
 <script>

@@ -1,0 +1,13 @@
+{% extends 'uk_movies/base.html' %}
+
+{% block content %}
+
+<p class="h3">Назва: {{ title.title }}</p>
+
+<form action="{% url 'my_movies:not_tmdb' %}" method='post'>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class='btn btn-primary' name="submit">Додати</button>
+</form>
+
+{% endblock content %}

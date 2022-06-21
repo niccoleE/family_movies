@@ -18,7 +18,12 @@ def register(request):
             return redirect('my_movies:home')
 
     context = {'form': form}
-    return render(request, 'registration/register.html', context)
+    language = request.LANGUAGE_CODE
+    if language == "en":
+        return render(request, 'registration/register.html', context)
+    else:
+        return render(request, 'uk_registration/register.html', context)
+
 
 
 def login_check(request):
@@ -33,13 +38,19 @@ def login_check(request):
             return redirect("my_movies:home")
         else:
             if User.objects.filter(username=check_username).exists():
-                print("exists")
                 messages.error(request, "Invalid password.")
+                return redirect("users:login_check")
             else:
                 messages.error(request, "No such user. Please check the username"
                                         " or register if you haven't registered yet")
                 return redirect("users:login_check")
     else:
         form = AuthenticationForm()
-    context = {"form": form}
-    return render(request, "registration/login.html", context)
+        context = {"form": form}
+        language = request.LANGUAGE_CODE
+        print("language", language)
+        if language == "en":
+            return render(request, "registration/login.html", context)
+        else:
+            return render(request, 'uk_registration/login.html', context)
+

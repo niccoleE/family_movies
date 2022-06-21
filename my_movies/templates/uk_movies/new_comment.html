@@ -1,14 +1,14 @@
-{% extends 'my_movies/base.html' %}
+{% extends 'uk_movies/base.html' %}
 
 {% block content %}
 
 <h3> <a class="link-dark" href="{% url 'my_movies:movie' movie.id %}">{{ movie }}</a></h3>
-<p>Add a new comment</p>
+<p>Додати коментар</p>
 <form action="" method='post'>
   {% csrf_token %}
   {{ form.as_p }}
   <input type="hidden" name="parentId" value="{{comment.id}}">
-  <button name='submit'>Submit</button>
+  <button name='submit'>Додати</button>
 </form>
 
 

@@ -1,0 +1,62 @@
+{% extends 'uk_movies/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<h3>Будь ласка, введіть ваші дані</h3>
+
+
+<form method="post" action="{% url 'users:register' %}">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+  <input type="text" name="username" autocapitalize="none" class="form-control"
+         maxlength="150" required="" id="id_username" placeholder="Ім'я користувача">
+  <span style="margin:5px;">Лише літери, цифри та @/./+/-/_.</span>
+  </div>
+  <div class="input-group mb-3">
+    <input type="password" id="id_password" name="password1" class="form-control" data-toggle="password1" placeholder="Пароль">
+    <span class="input-group-text">
+      <i class="eye" id="togglePassword" style="cursor: pointer;">&#128065</i>
+    </span>
+  <span style="margin:5px;">використовуйте щонайменше 8 символів; пароль НЕ може складатись лише із цифр</span>
+  </div>
+  <div class="input-group mb-3">
+    <input type="password" id="id_password2" name="password2" class="form-control" data-toggle="password2" placeholder="Підтвердити пароль">
+    <span class="input-group-text">
+    <i class="eye" id="togglePass" style="cursor: pointer;">&#128065</i>
+    </span>
+  </div>
+  <div style="margin-top:15px">
+  <input type="submit" value="Підтвердити">
+  </div>
+
+
+{% for text in form.errors.values %}
+  <div style="color:red;">
+      <p>{{ text }}</p>
+  </div>
+{% endfor %}
+</form>
+
+<script>
+  const togglePasswords = document.querySelectorAll('.eye');
+  const passwords = document.querySelectorAll('input[type=password]');
+
+  togglePasswords.forEach((item, i) => {
+        item.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = passwords[i].getAttribute('type') === 'password' ? 'text' : 'password';
+        passwords[i].setAttribute('type', type);
+        // toggle the eye slash icon
+        item.classList.toggle('eye-slash');
+        })
+    }
+  );
+</script>
+
+
+
+
+
+
+{% endblock content %}
