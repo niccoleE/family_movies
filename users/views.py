@@ -48,7 +48,6 @@ def login_check(request):
         form = AuthenticationForm()
         context = {"form": form}
         language = request.LANGUAGE_CODE
-        print("language", language)
         if language == "en":
             return render(request, "registration/login.html", context)
         else:
