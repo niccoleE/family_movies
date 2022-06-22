@@ -42,12 +42,15 @@
       </ul>
     </div>
   </div>
+  {% empty %}
+  <p>У вашому списку ще немає нотаток</p>
   {% endfor %}
+  <div>
+  <a class="btn btn-outline-success" href="{% url 'my_movies:favorite' %}">Додати нотатку</a>
+</div>
 </div>
 
-<div>
-  <a class="btn btn-outline-success" href="{% url 'my_movies:favorite' %}">Додати фільм</a>
-</div>
+
 
 
 
